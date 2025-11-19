@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Shadow</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: monospace;
+        }
+        #main {
+            width: 100dvw;
+            height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: rgba(182, 231, 175, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #overlay {
+            position: absolute;
+            width: fit-content;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay">
+        <h1>CSS Box Shadow</h1>
+    <p>Your cursor is the light source</p>
+    </div>
+    <div id="main">
+        <div id="circle">
+            <p id="box-shadow-values"></p>
+        </div>
+    </div>
+    <script>
+        const circle = document.getElementById("circle")
+        const circleComputedStyle = getComputedStyle(circle)
+        const circleHeight = parseInt(circleComputedStyle.height)
+        const main = document.getElementById("main")
+        const mainComputedStyle=getComputedStyle(main)
+        const x = parseInt(mainComputedStyle.width) / 2
+        const y = parseInt(mainComputedStyle.height) / 2
+        const valuesP = document.getElementById("box-shadow-values")
+        document.addEventListener("mousemove", (evt) => {
+            circle.style.boxShadow = `${x-evt.x}px ${y-evt.y}px 50px black`
+            valuesP.innerText = `${x-evt.x}px ${y-evt.y}px 50px black`
+        })
+    </script>
+</body>
+</html>
